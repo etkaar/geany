@@ -14,7 +14,7 @@
           Frank Lanitz,
           Colomban Wendling,
           Matthew Brush
-:Date: 2020-11-08
+:Date: 2020-12-21
 :Version: |(version)|
 
 Copyright © 2005 The Geany contributors
@@ -2667,6 +2667,14 @@ replace_and_find_by_default       Set ``Replace & Find`` button as default so  t
                                   it will be activated when the Enter key is
                                   pressed while one of the text fields has
                                   focus.
+always_set_from_selected          By default, selected text is only inserted   false       immediately
+                                  as search phrase into the search/replace
+                                  dialogs (Search > Find, Find in Files,
+                                  Replace) if the dialog was not already
+                                  opened before. Enable this option if you
+                                  want the search phrase to be always updated
+                                  with the selected text, even if the dialog
+                                  was already opened before.
 **``build`` group**
 number_ft_menu_items              The maximum number of menu items in the      2           on restart
                                   filetype build section of the Build menu.

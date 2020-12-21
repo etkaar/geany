@@ -575,8 +575,8 @@ void search_show_find_dialog(void)
 	}
 	else
 	{
-		/* only set selection if the dialog is not already visible */
-		if (! gtk_widget_get_visible(find_dlg.dialog) && sel)
+		/* only set selection if the dialog is not already visible, or corresponding preference is enabled */
+		if (sel && (! gtk_widget_get_visible(find_dlg.dialog) || search_prefs.always_set_from_selected))
 			gtk_entry_set_text(GTK_ENTRY(find_dlg.entry), sel);
 		gtk_widget_grab_focus(find_dlg.entry);
 		set_dialog_position(find_dlg.dialog, find_dlg.position);
@@ -751,8 +751,8 @@ void search_show_replace_dialog(void)
 	}
 	else
 	{
-		/* only set selection if the dialog is not already visible */
-		if (! gtk_widget_get_visible(replace_dlg.dialog) && sel)
+		/* only set selection if the dialog is not already visible, or corresponding preference is enabled */
+		if (sel && (! gtk_widget_get_visible(replace_dlg.dialog) || search_prefs.always_set_from_selected))
 			gtk_entry_set_text(GTK_ENTRY(replace_dlg.find_entry), sel);
 		if (sel != NULL) /* when we have a selection, reset the entry widget's background colour */
 			ui_set_search_entry_background(replace_dlg.find_entry, TRUE);
@@ -1059,8 +1059,8 @@ void search_show_find_in_files_dialog_full(const gchar *text, const gchar *dir)
 
 	if (!text)
 	{
-		/* only set selection if the dialog is not already visible, or has just been created */
-		if (doc && ! sel && ! gtk_widget_get_visible(fif_dlg.dialog))
+		/* only set selection if the dialog is not already visible, or has just been created, or corresponding preference is enabled */
+		if (doc && ! sel && (! gtk_widget_get_visible(fif_dlg.dialog) || search_prefs.always_set_from_selected))
 			sel = editor_get_default_selection(doc->editor, search_prefs.use_current_word, NULL);
 
 		text = sel;
